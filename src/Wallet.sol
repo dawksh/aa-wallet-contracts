@@ -5,12 +5,14 @@ pragma solidity ^0.8.19;
 import {BaseAccount} from "account-abstraction/core/BaseAccount.sol";
 import {UserOperation} from "account-abstraction/interfaces/UserOperation.sol";
 import {ECDSA} from "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import {MessageHashUtils} from "@openzeppelin/contracts/utils/cryptography/MessageHashUtils.sol";
 import {IEntryPoint} from "account-abstraction/interfaces/IEntryPoint.sol";
 
 import {Initializable} from "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
 contract Wallet is BaseAccount, Initializable {
     using ECDSA for bytes32;
+    using MessageHashUtils for bytes32;
 
     address public immutable walletFactory;
     IEntryPoint private immutable _entryPoint;
