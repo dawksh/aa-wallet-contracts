@@ -90,11 +90,6 @@ contract Wallet is
         (bool success, bytes memory result) = targetAddress.call{value: value}(
             data
         );
-        if (!success) {
-            assembly {
-                revert(add(result, 32), mload(result))
-            }
-        }
     }
 
     function _validateSignature(
